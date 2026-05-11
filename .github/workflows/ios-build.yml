@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         run: |
           brew update
-          brew install freetype pkg-config curl openssl
+          brew install freetype pkg-config curl openssl fmt
 
       - name: Prepare Build
         run: |
@@ -36,6 +36,7 @@ jobs:
             -DFREETYPE_LIBRARY=/opt/homebrew/lib/libfreetype.dylib \
             -DCURL_INCLUDE_DIR=/opt/homebrew/opt/curl/include \
             -DCURL_LIBRARY=/opt/homebrew/opt/curl/lib/libcurl.dylib \
+            -Dfmt_DIR=/opt/homebrew/opt/fmt/lib/cmake/fmt \
 
             -DUNLEASHED_RECOMP_IOS_ENABLE_CODE_SIGNING=OFF
 

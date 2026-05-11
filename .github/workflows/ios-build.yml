@@ -9,23 +9,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          submodules: recursive # Grabs the graphics engine (MoltenVK)
+          submodules: recursive
+          # This uses the 'key' you added to your Secrets
+          token: ${{ secrets.MY_GITHUB_TOKEN }} 
 
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.0' # Matches the 2026 dev environment
+          xcode-version: 'latest-stable' 
 
       - name: Install Dependencies
         run: |
-          brew install freetype
-
+          brew update
+          brew install freetype pkg-config
 
       - name: Prepare Build
         run: |
           mkdir -p build
           cd build
-          # This command points the engine to the Apple graphics language (Metal)
           cmake .. -G Xcode \
             -DCMAKE_SYSTEM_NAME=iOS \
             -DCMAKE_OSX_SYSROOT=iphoneos \
@@ -34,14 +35,12 @@ jobs:
       - name: Compile Game Engine
         run: |
           cd build
-          # We only build the Release version to keep the file size smaller
           xcodebuild -scheme UnleashedRecomp -configuration Release -sdk iphoneos build CODE_SIGNING_ALLOWED=NO
 
       - name: Package for Sideloading
         run: |
           cd build/Release-iphoneos
           mkdir -p Payload
-          # Moves the compiled app into a folder that Sideloadly can read
           cp -r UnleashedRecomp.app Payload/
           zip -r Unleashed.ipa Payload/
 

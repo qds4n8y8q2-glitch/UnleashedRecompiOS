@@ -34,6 +34,8 @@ jobs:
             -DCMAKE_PREFIX_PATH="/opt/homebrew;/opt/homebrew/opt/curl;/opt/homebrew/opt/openssl" \
             -DFREETYPE_INCLUDE_DIRS=/opt/homebrew/include/freetype2 \
             -DFREETYPE_LIBRARY=/opt/homebrew/lib/libfreetype.dylib \
+            -DCURL_INCLUDE_DIR=/opt/homebrew/opt/curl/include \
+            -DCURL_LIBRARY=/opt/homebrew/opt/curl/lib/libcurl.dylib \
 
             -DUNLEASHED_RECOMP_IOS_ENABLE_CODE_SIGNING=OFF
 

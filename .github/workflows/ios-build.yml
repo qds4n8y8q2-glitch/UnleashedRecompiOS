@@ -30,8 +30,10 @@ jobs:
           cmake .. -G Xcode \
             -DCMAKE_SYSTEM_NAME=iOS \
             -DCMAKE_OSX_SYSROOT=iphoneos \
-            -DCMAKE_OSX_ARCHITECTURES=arm64
-            -DCMAKE_PREFIX_PATH="/opt/homebrew"
+            -DCMAKE_OSX_ARCHITECTURES=arm64 \
+            -DCMAKE_PREFIX_PATH="/opt/homebrew" \
+            -DFREETYPE_INCLUDE_DIRS=/opt/homebrew/include/freetype2 \
+            -DFREETYPE_LIBRARY=/opt/homebrew/lib/libfreetype.dylib
 
       - name: Compile Game Engine
         run: |

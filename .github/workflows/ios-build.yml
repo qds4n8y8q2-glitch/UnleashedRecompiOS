@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         run: |
           brew update
-          brew install freetype pkg-config curl openssl fmt
+          brew install freetype pkg-config curl openssl fmt glslang ninja
 
       - name: Prepare Build
         run: |
@@ -31,14 +31,15 @@ jobs:
             -DCMAKE_SYSTEM_NAME=iOS \
             -DCMAKE_OSX_SYSROOT=iphoneos \
             -DCMAKE_OSX_ARCHITECTURES=arm64 \
-            -DCMAKE_PREFIX_PATH="/opt/homebrew;/opt/homebrew/opt/curl;/opt/homebrew/opt/openssl" \
+            -DCMAKE_PREFIX_PATH="/opt/homebrew;/opt/homebrew/opt/curl;/opt/homebrew/opt/openssl;/opt/homebrew/opt:fmt" \
             -DFREETYPE_INCLUDE_DIRS=/opt/homebrew/include/freetype2 \
             -DFREETYPE_LIBRARY=/opt/homebrew/lib/libfreetype.dylib \
             -DCURL_INCLUDE_DIR=/opt/homebrew/opt/curl/include \
             -DCURL_LIBRARY=/opt/homebrew/opt/curl/lib/libcurl.dylib \
             -Dfmt_DIR=/opt/homebrew/opt/fmt/lib/cmake/fmt \
 
-            -DUNLEASHED_RECOMP_IOS_ENABLE_CODE_SIGNING=OFF
+            -DUNLEASHED_RECOMP_IOS_ENABLE_CODE_SIGNING=OFF \
+            -DCMAKE_PROGRAM_PATH="/opt/homebrew/bin"
 
       - name: Compile Game Engine
         run: |

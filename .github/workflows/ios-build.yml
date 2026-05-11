@@ -16,6 +16,11 @@ jobs:
         with:
           xcode-version: '16.0' # Matches the 2026 dev environment
 
+      - name: Install Dependencies
+        run: |
+          brew install freetype
+
+
       - name: Prepare Build
         run: |
           mkdir -p build

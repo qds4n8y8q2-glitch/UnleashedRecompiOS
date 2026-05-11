@@ -1,5 +1,8 @@
 name: validate
-on:
+on:  
+  workflow_dispatch:
+  push:
+    branches: [ metal ]
   workflow_call:
     secrets:
       ASSET_REPO:

@@ -27,7 +27,7 @@ jobs:
         run: |
           mkdir -p build
           cd build
-          cmake .. -G Xcode \
+          cmake .. -G Ninja \
             -DCMAKE_SYSTEM_NAME=iOS \
             -DCMAKE_OSX_SYSROOT=iphoneos \
             -DCMAKE_OSX_ARCHITECTURES=arm64 \
@@ -37,28 +37,27 @@ jobs:
             -DCURL_INCLUDE_DIR=/opt/homebrew/opt/curl/include \
             -DCURL_LIBRARY=/opt/homebrew/opt/curl/lib/libcurl.dylib \
             -Dfmt_DIR=/opt/homebrew/opt/fmt/lib/cmake/fmt \
-
             -DUNLEASHED_RECOMP_IOS_ENABLE_CODE_SIGNING=OFF \
             -DCMAKE_PROGRAM_PATH="/opt/homebrew/bin" \
             -DSH_COMPILER_EXECUTABLE="/opt/homebrew/bin/glslangValidator" \
-            -G Ninja
 
 
       - name: Compile Game Engine
         run: |
           cd build
           ninja
-          xcodebuild -scheme UnleashedRecomp -configuration Release -sdk iphoneos build CODE_SIGNING_ALLOWED=NO
+          
 
       - name: Package for Sideloading
         run: |
           cd build/Release-iphoneos
           mkdir -p Payload
-          cp -r build/UnleashedRecomp.app Payload/ || cp -r UnleashedRecomp.app Payload/
+          cp -r *.app Payload/ || cp -r Release-iphoneos/*.app Payload/ || true
+          zip -r Unleashed.ipa Payload/
           zip -r Unleashed.ipa Payload/
 
       - name: Upload Finished IPA
         uses: actions/upload-artifact@v4
         with:
           name: Unleashed-Mobile-Build
-          path: build/Release-iphoneos/Unleashed.ipa
+          path: Unleashed.ipa

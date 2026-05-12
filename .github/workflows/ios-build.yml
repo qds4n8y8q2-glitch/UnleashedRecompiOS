@@ -60,4 +60,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Unleashed-Mobile-Build
-          path: Unleashed.ipa
+          path: build/Release-iphoneos/Unleashed.ipa

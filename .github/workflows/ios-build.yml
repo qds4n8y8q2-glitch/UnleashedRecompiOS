@@ -52,11 +52,11 @@ jobs:
         run: |
           cd build/Release-iphoneos
           mkdir -p Payload
-          find . -name "*.app" -exec cp -r {} Payload/ \;
+          cp -r UnleashedRecomp.app Payload/ || cp -r bin/UnleashedRecomp.app Payload/
           zip -r Unleashed.ipa Payload/
 
       - name: Upload Finished IPA
         uses: actions/upload-artifact@v4
         with:
           name: Unleashed-Mobile-Build
-          path: build/Release-iphoneos/Unleashed.ipa
+          path: Unleashed.ipa

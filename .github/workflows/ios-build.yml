@@ -52,7 +52,7 @@ jobs:
         run: |
           cd build/Release-iphoneos
           mkdir -p Payload
-          cp -r *.app Payload/ || cp -r Release-iphoneos/*.app Payload/ || true
+          find . -name "*.app" -exec cp -r {} Payload/ \;
           zip -r Unleashed.ipa Payload/
           zip -r Unleashed.ipa Payload/
 

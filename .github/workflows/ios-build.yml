@@ -39,7 +39,7 @@ jobs:
             -Dfmt_DIR=/opt/homebrew/opt/fmt/lib/cmake/fmt \
             -DUNLEASHED_RECOMP_IOS_ENABLE_CODE_SIGNING=OFF \
             -DCMAKE_PROGRAM_PATH="/opt/homebrew/bin" \
-            -DSH_COMPILER_EXECUTABLE="/opt/homebrew/bin/glslangValidator" \
+            -DSH_COMPILER_EXECUTABLE="/opt/homebrew/bin/glslangValidator" 
 
 
       - name: Compile Game Engine

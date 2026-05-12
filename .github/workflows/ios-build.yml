@@ -31,7 +31,7 @@ jobs:
             -DCMAKE_SYSTEM_NAME=iOS \
             -DCMAKE_OSX_SYSROOT=iphoneos \
             -DCMAKE_OSX_ARCHITECTURES=arm64 \
-            -DCMAKE_PREFIX_PATH="/opt/homebrew;/opt/homebrew/opt/curl;/opt/homebrew/opt/openssl;/opt/homebrew/opt:fmt" \
+            -DCMAKE_PREFIX_PATH="/opt/homebrew;/opt/homebrew/opt/curl;/opt/homebrew/opt/openssl;/opt/homebrew/opt/fmt" \
             -DFREETYPE_INCLUDE_DIRS=/opt/homebrew/include/freetype2 \
             -DFREETYPE_LIBRARY=/opt/homebrew/lib/libfreetype.dylib \
             -DCURL_INCLUDE_DIR=/opt/homebrew/opt/curl/include \
